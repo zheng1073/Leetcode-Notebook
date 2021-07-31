@@ -1,0 +1,28 @@
+"""
+Given a string s containing just the characters '(', ')', '{', '}', '[' and ']', determine if the input string is valid.
+
+An input string is valid if:
+
+Open brackets must be closed by the same type of brackets.
+Open brackets must be closed in the correct order.
+"""
+def isValid(self, s: str) -> bool:
+        # stack data structure
+        stack = []
+        for symbol in s:
+            if symbol == "(" or symbol == "{" or symbol == "[" :
+                stack.append(symbol)
+            else:
+                if len(stack) == 0:
+                    return False
+                if symbol == ")" and stack[-1] == "(":
+                    stack.pop()
+                elif symbol == "}" and stack[-1] == "{":
+                    stack.pop()
+                elif symbol == "]" and stack[-1] == "[":
+                    stack.pop()
+                else:
+                    return False
+        if len(stack) == 0:
+            return True
+        return False
